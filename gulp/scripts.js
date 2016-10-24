@@ -47,6 +47,7 @@ function webpackWrapper(watch, test, callback) {
   }
 
   return gulp.src(sources)
+    .pipe($.plumber({errorHandler: function(){}}))
     .pipe(webpack(webpackOptions, null, webpackChangeHandler))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app')));
 }

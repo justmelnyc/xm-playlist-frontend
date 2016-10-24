@@ -24,13 +24,8 @@ exports.paths = {
  *  to inject css preprocessor deps and js files in karma
  */
 exports.wiredep = {
-  exclude: [/jquery/, /bootstrap\.css/, /bootstrap\.js/],
-  directory: 'bower_components',
-  overrides: {
-      'socket.io-client': {
-        main: 'socket.io.js'
-      }
-    }
+  exclude: [/jquery/, /\/bootstrap\.js$/, /\/bootstrap-sass\/.*\.js/, /\/bootstrap\.css/],
+  directory: 'bower_components'
 };
 
 /**

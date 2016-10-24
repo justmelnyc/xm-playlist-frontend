@@ -19,6 +19,15 @@ exports.config = {
   // protractor is called.
   specs: [paths.e2e + '/**/*.js'],
 
+  // If you enter your wmt creds, you will be able to make the test pass,
+  // Will need to get a fake user in this case.
+  params: {
+    login: {
+      user: 'walmartusername',
+      password: 'walmartpassword'
+    }
+  },
+
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {
     showColors: true,

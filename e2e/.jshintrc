@@ -1,14 +1,11 @@
 {
+  "extends": "../.jshintrc",
+  "node": true,
   "globals": {
     "browser": false,
     "element": false,
-    "protractor": false,
     "by": false,
     "$": false,
     "$$": false
-  },
-    "env": {
-        "browser": true,
-        "node": true
-    }
+  }
 }

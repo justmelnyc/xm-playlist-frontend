@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+  pattern: ['gulp-*', 'main-bower-files', 'del']
 });
 
 gulp.task('partials', function () {
@@ -17,10 +17,11 @@ gulp.task('partials', function () {
       removeEmptyAttributes: true,
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
-      collapseWhitespace: true
+      collapseWhitespace: true,
+      conservativeCollapse: true
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: 'bpm',
+      module: 'Presidio',
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
@@ -43,7 +44,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.useref())
     .pipe(jsFilter)
     .pipe($.sourcemaps.init())
-    .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
+    .pipe($.uglify()).on('error', conf.errorHandler('Uglify'))
     .pipe($.rev())
     .pipe($.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
@@ -60,7 +61,8 @@ gulp.task('html', ['inject', 'partials'], function () {
       removeEmptyAttributes: true,
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
-      collapseWhitespace: true
+      collapseWhitespace: true,
+      conservativeCollapse: true
     }))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
