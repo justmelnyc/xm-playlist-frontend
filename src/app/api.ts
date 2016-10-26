@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { environment } from '../environments/environment';
 import { Channel } from './channel';
@@ -7,6 +8,8 @@ import { Stream } from './stream';
 
 @Injectable()
 export class Api {
+
+  currentChannel: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private http: Http) { }
 

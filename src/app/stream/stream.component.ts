@@ -30,6 +30,7 @@ export class StreamComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe((params: Params) => {
       // get segment id from route
       let channelName = params['channelName'];
+      this.api.currentChannel.next(channelName);
       this.api.getRecent(channelName).then((recent => this.recent = recent));
     });
   }

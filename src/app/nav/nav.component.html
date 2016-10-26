@@ -7,7 +7,7 @@
       </li> -->
       <li ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle">
-          Stations
+          {{ channelName || 'Stations' }}
         </a>
         <div class="dropdown-menu">
           <a *ngFor="let channel of channels" class="dropdown-item" [routerLink]="['station', channel.name]">
