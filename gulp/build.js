@@ -21,7 +21,7 @@ gulp.task('partials', function () {
       conservativeCollapse: true
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: 'Presidio',
+      module: 'bpm',
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
