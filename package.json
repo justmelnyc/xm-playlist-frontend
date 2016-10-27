@@ -32,11 +32,12 @@
     "zone.js": "^0.6.26"
   },
   "devDependencies": {
+    "postcss-discard-comments": "^2.0.4",
     "portfinder": "^1.0.9",
-    "@types/jasmine": "^2.5.35",
+    "@types/jasmine": "^2.5.36",
     "@types/lodash": "^4.14.37",
     "@types/ms": "^0.7.29",
-    "@types/node": "^6.0.45",
+    "@types/node": "^6.0.46",
     "angular-cli": "1.0.0-beta.18",
     "codelyzer": "1.0.0-beta.3",
     "jasmine-core": "2.5.2",
