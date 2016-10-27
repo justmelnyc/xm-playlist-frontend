@@ -6,5 +6,4 @@ export interface Stream {
   artistsId: string;
   startTime: Date;
   songId: string;
-  cover?: string;
 }
