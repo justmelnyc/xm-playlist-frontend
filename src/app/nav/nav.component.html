@@ -2,9 +2,6 @@
   <div class="container">
     <a class="navbar-brand" [routerLink]="['']">xmplaylist</a>
     <ul class="nav navbar-nav">
-      <!-- <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li> -->
       <li ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle">
           {{ channelName || 'Stations' }}
@@ -14,6 +11,9 @@
             {{ channel.name }}
           </a>
         </div>
+      </li>
+      <li class="nav-item" *ngIf="channelName">
+        <a class="nav-link" [routerLink]="['station', channelName]">recent</a>
       </li>
     </ul>
   </div>
