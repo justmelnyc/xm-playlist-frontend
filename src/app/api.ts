@@ -42,7 +42,7 @@ export class Api {
       return this.spotifyCache[songId];
     }
     this.spotifyCache[songId] = this.http
-      .get(`${environment.api}/spotify/${songId}`)
+      .get(`${environment.api}/spotify/${encodeURIComponent(songId)}`)
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
