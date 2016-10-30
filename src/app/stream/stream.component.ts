@@ -5,8 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
 
 import { Api } from '../api';
-import { Channel } from '../channel';
-import { Stream } from '../stream';
+import { Channel, Stream } from '../app.interfaces';
 
 @Component({
   selector: 'app-stream',

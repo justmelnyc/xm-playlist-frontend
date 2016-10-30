@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Api } from '../api';
-import { Channel } from '../channel';
+import { Channel } from '../app.interfaces';
 
 @Component({
   selector: 'app-nav',

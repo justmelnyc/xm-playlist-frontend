@@ -7,9 +7,9 @@ const ms = require('ms');
 })
 export class TimeSinceComponent implements OnDestroy, OnChanges {
   @Input() date: string;
+  timeSince: string;
   private past: Date;
   private change: number;
-  private timeSince: string;
   private timeout: any;
 
   ngOnChanges() {

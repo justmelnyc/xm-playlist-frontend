@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Api } from '../api';
-import { Channel } from '../channel';
+import { Channel } from '../app.interfaces';
 
 @Component({
   selector: 'app-home',

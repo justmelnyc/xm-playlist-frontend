@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { Api } from './api';
 import { NavComponent } from './nav/nav.component';
 import { TimeSinceComponent } from './util/time-since.component';
+import { CoverartComponent } from './coverart/coverart.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
     HomeComponent,
     NavComponent,
     TimeSinceComponent,
+    CoverartComponent,
   ],
   imports: [
     BrowserModule,

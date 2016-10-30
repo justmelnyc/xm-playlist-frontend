@@ -1,9 +1,8 @@
 <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="media">
-      <div class="media-left">
-        <img style="max-height: 120px;margin-left:2px;" class="media-object" max-width="20%"
-          src="{{mostHeard?.cover || '/assets/img/album_placeholder.jpg'}}">
+      <div class="media-left" style="max-height: 120px;margin-left:2px;max-width:20%">
+        <coverart [songId]="mostHeard?.songId"></coverart>
       </div>
       <div class="media-body">
         <h5 class="text-muted"><small>Most Played Today</small></h5>
@@ -44,7 +43,7 @@
 <div class="row">
   <div class="col-md-4 col-lg-3" *ngFor="let stream of recent" style="margin-bottom:30px">
     <div class="card" style="height:100%;">
-      <img class="card-img-top" width="100%" src="{{stream.cover || '/assets/img/album_placeholder.jpg'}}">
+      <coverart [songId]="stream.songId"></coverart>
       <div class="card-block">
         <p class="card-text">
           <small class="text-muted">
