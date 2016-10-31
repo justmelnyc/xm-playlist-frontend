@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 
 import { Api } from '../api';
 import { Channel, Stream } from '../app.interfaces';
@@ -14,7 +15,7 @@ import { Channel, Stream } from '../app.interfaces';
 })
 export class StreamComponent implements OnInit, OnDestroy {
 
-  channels: Channel[];
+  channels: Observable<Channel[]>;
   recent: Stream[] = [];
   mostHeard: Stream;
   mostTimesHeard: number;
@@ -32,7 +33,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.api.getChannels().then((channels => this.channels = channels));
+    this.channels = this.api.getChannels();
     this.sub = this.route.params.subscribe((params: Params) => {
       // get segment id from route
       let channelName = params['channelName'];

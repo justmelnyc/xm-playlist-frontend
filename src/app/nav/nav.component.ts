@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs';
 
 import { Api } from '../api';
 import { Channel } from '../app.interfaces';
@@ -10,7 +11,7 @@ import { Channel } from '../app.interfaces';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit, OnDestroy {
-  channels: Channel[];
+  channels: Observable<Channel[]>;
   channelName: string;
   private sub: Subscription;
 
@@ -19,7 +20,7 @@ export class NavComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.api.getChannels().then((channels => this.channels = channels));
+    this.channels = this.api.getChannels();
     this.sub = this.api.currentChannel.subscribe((channelName) => {
       this.channelName = channelName;
       console.log(channelName);

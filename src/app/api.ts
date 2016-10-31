@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { URLSearchParams } from '@angular/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { Channel, Stream, Spotify } from './app.interfaces';
@@ -14,12 +15,10 @@ export class Api {
 
   constructor(private http: Http) { }
 
-  getChannels(): Promise<Channel[]> {
+  getChannels(): Observable<Channel[]> {
     return this.http
       .get(`${environment.api}/channels`)
-      .toPromise()
-      .then(res => res.json())
-      .catch(this.handleError);
+      .map(res => res.json());
   }
 
   getRecent(channelName: string, last?: Stream): Promise<Stream[]> {

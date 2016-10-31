@@ -7,7 +7,7 @@
           {{ channelName || 'Stations' }}
         </a>
         <div class="dropdown-menu">
-          <a *ngFor="let channel of channels" class="dropdown-item" [routerLink]="['station', channel.name]">
+          <a *ngFor="let channel of channels | async" class="dropdown-item" [routerLink]="['station', channel.name]">
             {{ channel.name }}
           </a>
         </div>

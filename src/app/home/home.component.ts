@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Api } from '../api';
 import { Channel } from '../app.interfaces';
@@ -9,12 +10,12 @@ import { Channel } from '../app.interfaces';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  channels: Channel[];
+  channels: Observable<Channel[]>;
 
   constructor(private api: Api) { }
 
   ngOnInit() {
-    this.api.getChannels().then((channels => this.channels = channels));
+    this.channels = this.api.getChannels();
   }
 
 }
