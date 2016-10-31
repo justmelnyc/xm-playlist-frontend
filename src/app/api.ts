@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { URLSearchParams } from '@angular/http';
 
 import { environment } from '../environments/environment';
 import { Channel, Stream, Spotify } from './app.interfaces';
@@ -21,9 +22,15 @@ export class Api {
       .catch(this.handleError);
   }
 
-  getRecent(channelName: string): Promise<Stream[]> {
+  getRecent(channelName: string, last?: Stream): Promise<Stream[]> {
+    const search = new URLSearchParams();
+    if (last) {
+      search.set('last', String(new Date(last.startTime).getTime()));
+    }
     return this.http
-      .get(`${environment.api}/recent/${channelName}`)
+      .get(`${environment.api}/recent/${channelName}`, {
+        search
+      })
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);

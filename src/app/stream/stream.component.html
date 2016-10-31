@@ -40,7 +40,11 @@
 
 <br>
 
-<div class="row">
+<div class="row"
+            infinite-scroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="500"
+            (scrolled)="onScroll()">
   <div class="col-md-4 col-lg-3" *ngFor="let stream of recent" style="margin-bottom:30px">
     <div class="card" style="height:100%;">
       <coverart [songId]="stream.songId"></coverart>

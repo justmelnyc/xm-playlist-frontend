@@ -6,12 +6,12 @@ import { Spotify } from '../app.interfaces';
 @Component({
   selector: 'coverart',
   template: `
-  <img class="img-fluid" src="{{ spotify?.cover || '/assets/img/album_placeholder.jpg' }}">
+  <img class="img-fluid" src="{{spotify?.cover || default}}">
   `,
-  styleUrls: ['./coverart.component.css'],
 })
 export class CoverartComponent implements DoCheck {
   @Input() songId: string;
+  default = '/assets/img/album_placeholder.jpg';
   spotify: Spotify;
 
   private oldId: string;
@@ -24,7 +24,6 @@ export class CoverartComponent implements DoCheck {
     this.oldId = this.songId;
     this.api.getSpotify(this.songId).then((spotify) => {
       this.spotify = spotify;
-      console.log(spotify)
     });
   }
 

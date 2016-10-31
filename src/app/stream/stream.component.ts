@@ -15,13 +15,15 @@ import { Channel, Stream } from '../app.interfaces';
 export class StreamComponent implements OnInit, OnDestroy {
 
   channels: Channel[];
-  recent: Stream[];
+  recent: Stream[] = [];
   mostHeard: Stream;
   mostTimesHeard: number;
   unique: number;
   total: number;
 
   private sub: Subscription;
+  private page = 0;
+  private loading = false;
 
   constructor(
     private api: Api,
@@ -35,12 +37,11 @@ export class StreamComponent implements OnInit, OnDestroy {
       // get segment id from route
       let channelName = params['channelName'];
       this.api.currentChannel.next(channelName);
-      this.api.getRecent(channelName).then((recent => this.setup(recent)));
+      this.getRecentPage();
     });
   }
-  setup(recent) {
-    this.recent = recent;
-    this.total = recent.length;
+  setup() {
+    this.total = this.recent.length;
     const songIds = _.map(this.recent, 'songId');
     const heardTimes = _.countBy(songIds);
     const heardTimesPairs = _.toPairs(heardTimes);
@@ -51,6 +52,23 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+  getRecentPage() {
+    if (!this.loading) {
+      this.loading = true;
+    } else {
+      return;
+    }
+    const channel = this.api.currentChannel.getValue();
+    console.log(_.last(this.recent))
+    this.api.getRecent(channel, _.last(this.recent)).then((recent) => {
+      this.recent = _.concat(this.recent, recent);
+      this.loading = false;
+    });
+  }
+  onScroll() {
+    this.page = this.page + 1;
+    this.getRecentPage();
   }
 
 }

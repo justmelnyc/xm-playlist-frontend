@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { StreamComponent } from './stream/stream.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
+    InfiniteScrollModule,
   ],
   providers: [
     Api,
