@@ -39,17 +39,12 @@ export class StreamComponent implements OnInit, OnDestroy {
       let channelName = params['channelName'];
       this.api.currentChannel.next(channelName);
       this.getRecentPage();
+      this.api.mostHeard(channelName).then((res) => {
+        this.unique = res.length;
+        this.total = _.sumBy(res, 'count');
+        this.mostHeard = res[0];
+      });
     });
-  }
-  setup() {
-    this.total = this.recent.length;
-    const songIds = _.map(this.recent, 'songId');
-    const heardTimes = _.countBy(songIds);
-    const heardTimesPairs = _.toPairs(heardTimes);
-    const mostHeard = _.maxBy(heardTimesPairs, _.last);
-    this.mostHeard = _.find(this.recent, {songId: mostHeard[0]});
-    this.mostTimesHeard = mostHeard[1];
-    this.unique = _.keys(heardTimes).length;
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -61,7 +56,6 @@ export class StreamComponent implements OnInit, OnDestroy {
       return;
     }
     const channel = this.api.currentChannel.getValue();
-    console.log(_.last(this.recent))
     this.api.getRecent(channel, _.last(this.recent)).then((recent) => {
       this.recent = _.concat(this.recent, recent);
       this.loading = false;

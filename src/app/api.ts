@@ -35,9 +35,9 @@ export class Api {
       .catch(this.handleError);
   }
 
-  mostHeard(channelName: string): Promise<Stream[]> {
+  mostHeard(channelName: string): Promise<any[]> {
     return this.http
-      .get(`${environment.api}/recent/${channelName}`)
+      .get(`${environment.api}/mostHeard/${channelName}`)
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
