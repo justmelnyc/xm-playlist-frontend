@@ -1,17 +1,13 @@
 <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="media">
-      <div class="media-left" style="max-width:33%">
+      <div class="media-left" style="max-width:30%">
         <coverart [songId]="mostHeard?.songId"></coverart>
       </div>
       <div class="media-body">
         <h5 class="text-muted"><small>Most Played Today</small></h5>
         <h4>{{ mostHeard?.name }}</h4>
-        <ul class="list-inline">
-          <li class="list-inline-item" *ngFor="let artist of mostHeard?.artists">
-            <small>{{ artist }}</small>
-          </li>
-        </ul>
+        <a href="#" class="card-link" *ngFor="let artist of mostHeard?.artists">{{ artist }}</a>
         <!-- <bpm-links song="vm.mostHeard"></bpm-links> -->
         <app-links *ngIf="mostHeard" [stream]="mostHeard"></app-links>
       </div>
@@ -45,7 +41,7 @@
 <div class="row" infinite-scroll
   [infiniteScrollDistance]="1"
   (scrolled)="onScroll()">
-  <div class="col-sm-6 col-md-4" *ngFor="let stream of recent" style="margin-bottom:30px">
+  <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let stream of recent" style="margin-bottom:30px">
     <div class="card h-100">
       <coverart [songId]="stream.songId"></coverart>
       <div class="card-block">
@@ -57,9 +53,8 @@
         <h5 class="card-title">{{ stream.name }}</h5>
         <a href="#" class="card-link" *ngFor="let artist of stream.artists">{{ artist }}</a>
       </div>
-      <div class="card-block">
-        <app-links class="text-xs-center" [stream]="stream"></app-links>
-      </div>
+      <br>
+      <app-links class="text-xs-center" [stream]="stream"></app-links>
     </div>
   </div>
 </div>

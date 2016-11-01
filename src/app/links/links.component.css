@@ -1,3 +1,18 @@
 .btn-secondary {
   border-color: #fff;
 }
+
+.links {
+  position: absolute;
+  bottom: 3px;
+}
+
+.youtube:hover {
+  background-color: #e52d27;
+}
+.hypem:hover {
+  background-color: #83c441;
+}
+.spotify:hover {
+  background-color: #1ED760;
+}
