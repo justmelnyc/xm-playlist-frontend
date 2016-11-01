@@ -1,14 +1,14 @@
-<div class="links w-100">
-    <a [routerLink]="['/track', stream.songId]" class="btn btn-secondary info" role="button">
-        <i class="fa fa-info-circle"></i>
-    </a>
-    <a href="{{hypem}}" target="_blank" class="btn btn-secondary hypem" role="button">
-        <i class="fa fa-heart"></i>
-    </a>
-    <a href="{{youtube}}" target="_blank" class="btn btn-secondary youtube" role="button">
-        <i class="fa fa-youtube-play"></i>
-    </a>
-    <a *ngIf="spotify" href="{{spotify}}" target="_blank" class="btn btn-secondary spotify" role="button">
-        <i class="fa fa-spotify"></i>
-    </a>
+<div class="links">
+  <a [routerLink]="['/track', stream.songId]" class="btn btn-secondary info" role="button">
+    <i class="fa fa-info-circle"></i>
+  </a>
+  <a href="{{hypem}}" target="_blank" class="btn btn-secondary hypem" role="button">
+    <i class="fa fa-heart"></i>
+  </a>
+  <a href="{{youtube}}" target="_blank" class="btn btn-secondary youtube" role="button">
+    <i class="fa fa-youtube-play"></i>
+  </a>
+  <a *ngIf="spotify" href="{{spotify}}" target="_blank" class="btn btn-secondary spotify" role="button">
+    <i class="fa fa-spotify"></i>
+  </a>
 </div>

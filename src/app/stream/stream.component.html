@@ -4,12 +4,10 @@
       <div class="media-left" style="max-width:30%">
         <coverart [songId]="mostHeard?.songId"></coverart>
       </div>
-      <div class="media-body">
+      <div class="media-body pb-3">
         <h5 class="text-muted"><small>Most Played Today</small></h5>
         <h4>{{ mostHeard?.name }}</h4>
         <a href="#" class="card-link" *ngFor="let artist of mostHeard?.artists">{{ artist }}</a>
-        <!-- <bpm-links song="vm.mostHeard"></bpm-links> -->
-        <app-links *ngIf="mostHeard" [stream]="mostHeard"></app-links>
       </div>
     </div>
   </div>
@@ -53,8 +51,9 @@
         <h5 class="card-title">{{ stream.name }}</h5>
         <a href="#" class="card-link" *ngFor="let artist of stream.artists">{{ artist }}</a>
       </div>
-      <br>
-      <app-links class="text-xs-center" [stream]="stream"></app-links>
+      <div style="height:40px">
+        <app-links class="text-xs-center" [stream]="stream"></app-links>
+      </div>
     </div>
   </div>
 </div>
