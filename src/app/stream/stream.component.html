@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="media">
-      <div class="media-left" style="max-height: 120px;margin-left:2px;max-width:20%">
+      <div class="media-left" style="max-width:33%">
         <coverart [songId]="mostHeard?.songId"></coverart>
       </div>
       <div class="media-body">
@@ -13,25 +13,26 @@
           </li>
         </ul>
         <!-- <bpm-links song="vm.mostHeard"></bpm-links> -->
+        <app-links *ngIf="mostHeard" [stream]="mostHeard"></app-links>
       </div>
     </div>
   </div>
   <div class="col-md-6 col-sm-12">
     <div class="row">
       <div class="col-xs-6">
-        <div class="text-xs-center card">
-          <div class="card-block">
-            <h2>{{ total }}</h2>
-            <p class="card-text"><small>songs last 24 hours</small></p>
-          </div>
+        <div class="text-xs-center card-block">
+          <h2>{{ total }}</h2>
+          <p class="card-text">
+            <small>songs last 24 hours</small>
+          </p>
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="text-xs-center card">
-          <div class="card-block">
-            <h2>{{ unique }}</h2>
-            <p class="card-text"><small>unique songs last 24 hours</small></p>
-          </div>
+        <div class="text-xs-center card-block">
+          <h2>{{ unique }}</h2>
+          <p class="card-text">
+            <small>unique songs last 24 hours</small>
+          </p>
         </div>
       </div>
     </div>
@@ -39,13 +40,12 @@
 </div>
 
 <br>
+<br>
 
-<div class="row"
-            infinite-scroll
-            [infiniteScrollDistance]="2"
-            [infiniteScrollThrottle]="500"
-            (scrolled)="onScroll()">
-  <div class="col-md-4 col-lg-3" *ngFor="let stream of recent" style="margin-bottom:30px">
+<div class="row" infinite-scroll
+  [infiniteScrollDistance]="1"
+  (scrolled)="onScroll()">
+  <div class="col-sm-6 col-md-4" *ngFor="let stream of recent" style="margin-bottom:30px">
     <div class="card" style="height:100%;">
       <coverart [songId]="stream.songId"></coverart>
       <div class="card-block">
@@ -54,14 +54,11 @@
             <time-since [date]="stream.startTime"></time-since>
           </small>
         </p>
-        <h6 class="card-title">{{stream.name}}</h6>
-        <ul class="list-inline">
-          <li class="list-inline-item" *ngFor="let artist of stream.artists">
-            <a href="#/artist/{{artist}}">
-              <small>{{artist}}</small>
-            </a>
-          </li>
-        </ul>
+        <h5 class="card-title">{{ stream.name }}</h5>
+        <a href="#" class="card-link" *ngFor="let artist of stream.artists">{{ artist }}</a>
+      </div>
+      <div class="card-block">
+        <app-links class="text-xs-center" [stream]="stream"></app-links>
       </div>
     </div>
   </div>

@@ -23,6 +23,9 @@ export class CoverartComponent implements DoCheck {
     }
     this.oldId = this.songId;
     this.api.getSpotify(this.songId).then((spotify) => {
+      if (!spotify) {
+        return;
+      }
       this.spotify = spotify;
     });
   }

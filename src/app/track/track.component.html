@@ -1,0 +1,19 @@
+<div class="row" *ngIf="track">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <coverart [songId]="track.songId"></coverart>
+      <div class="card-block">
+        <h5 class="card-title">{{track.name}}</h5>
+        <a href="#" class="card-link" *ngFor="let artist of track.artists">{{ artist }}</a>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">First Heard: <time-since [date]="track.firstHeard"></time-since></li>
+        <li class="list-group-item">Last Heard: <time-since [date]="track.lastHeard"></time-since></li>
+      </ul>
+      <div class="card-block">
+        <app-links class="text-xs-center" [stream]="track"></app-links>
+      </div>
+      <div id="plays" style="margin-bottom: -6px"></div>
+    </div>
+  </div>
+</div>

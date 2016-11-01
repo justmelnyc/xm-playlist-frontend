@@ -1,6 +1,7 @@
 $enable-flex: true;
 @import 'node_modules/bootstrap/scss/_variables';
 @import 'node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/font-awesome/css/font-awesome.css';
 
 nav {
   margin-bottom: 20px;

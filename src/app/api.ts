@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs';
 
 import { environment } from '../environments/environment';
-import { Channel, Stream, Spotify } from './app.interfaces';
+import { Channel, Stream, Spotify, Track } from './app.interfaces';
 
 @Injectable()
 export class Api {
@@ -27,9 +27,15 @@ export class Api {
       search.set('last', String(new Date(last.startTime).getTime()));
     }
     return this.http
-      .get(`${environment.api}/recent/${channelName}`, {
-        search
-      })
+      .get(`${environment.api}/recent/${channelName}`, { search })
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
+  }
+
+  getTrack(songId: string): Promise<Track> {
+    return this.http
+      .get(`${environment.api}/track/${songId}`)
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);

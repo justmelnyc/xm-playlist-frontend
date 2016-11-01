@@ -22,3 +22,12 @@ export interface Spotify {
   url: string;
   songId: string;
 }
+
+export interface Track {
+  firstHeard: Date;
+  lastHeard: Date;
+  artists: string;
+  artistsId: string;
+  name: string;
+  songId: string;
+}

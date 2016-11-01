@@ -11,7 +11,6 @@ import { Channel, Stream } from '../app.interfaces';
 @Component({
   selector: 'app-stream',
   templateUrl: './stream.component.html',
-  styleUrls: ['./stream.component.css']
 })
 export class StreamComponent implements OnInit, OnDestroy {
 
@@ -36,7 +35,7 @@ export class StreamComponent implements OnInit, OnDestroy {
     this.channels = this.api.getChannels();
     this.sub = this.route.params.subscribe((params: Params) => {
       // get segment id from route
-      let channelName = params['channelName'];
+      const channelName = params['channelName'];
       this.api.currentChannel.next(channelName);
       this.getRecentPage();
       this.api.mostHeard(channelName).then((res) => {

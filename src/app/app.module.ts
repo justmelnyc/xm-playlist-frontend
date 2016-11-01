@@ -12,11 +12,14 @@ import { Api } from './api';
 import { NavComponent } from './nav/nav.component';
 import { TimeSinceComponent } from './util/time-since.component';
 import { CoverartComponent } from './coverart/coverart.component';
+import { LinksComponent } from './links/links.component';
+import { TrackComponent } from './track/track.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'station/:channelName', component: StreamComponent },
+  { path: 'track/:songId', component: TrackComponent },
   {
     path: '**',
     redirectTo: '',
@@ -32,6 +35,8 @@ const routes: Routes = [
     NavComponent,
     TimeSinceComponent,
     CoverartComponent,
+    LinksComponent,
+    TrackComponent,
   ],
   imports: [
     BrowserModule,

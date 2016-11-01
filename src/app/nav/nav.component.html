@@ -1,20 +1,20 @@
 <nav class="navbar navbar-light bg-faded">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['']">xmplaylist</a>
+    <a class="navbar-brand" [routerLink]="['/']">xmplaylist</a>
     <ul class="nav navbar-nav">
       <li ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle">
           {{ channelName || 'Stations' }}
         </a>
         <div class="dropdown-menu">
-          <a *ngFor="let channel of channels | async" class="dropdown-item" [routerLink]="['station', channel.name]">
+          <a *ngFor="let channel of channels | async" class="dropdown-item" [routerLink]="['/station', channel.name]">
             {{ channel.name }}
           </a>
         </div>
       </li>
-      <li class="nav-item" *ngIf="channelName">
+      <!-- <li class="nav-item" *ngIf="channelName">
         <a class="nav-link" [routerLink]="['station', channelName]">recent</a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </nav>
