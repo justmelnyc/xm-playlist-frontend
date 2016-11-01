@@ -15,7 +15,7 @@ import { Channel, Stream } from '../app.interfaces';
 export class StreamComponent implements OnInit, OnDestroy {
 
   channels: Observable<Channel[]>;
-  recent: Stream[] = [];
+  recent: Stream[];
   mostHeard: Stream;
   mostTimesHeard: number;
   unique: number;
@@ -24,6 +24,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private page = 0;
   private loading = false;
+  private oldChannel = '';
 
   constructor(
     private api: Api,
@@ -36,6 +37,10 @@ export class StreamComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe((params: Params) => {
       // get segment id from route
       const channelName = params['channelName'];
+      if (channelName !== this.oldChannel) {
+        this.recent = [];
+        this.oldChannel = channelName;
+      }
       this.api.currentChannel.next(channelName);
       this.getRecentPage();
       this.api.mostHeard(channelName).then((res) => {
