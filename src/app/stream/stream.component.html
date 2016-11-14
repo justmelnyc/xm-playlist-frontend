@@ -7,7 +7,7 @@
       <div class="media-body pb-3">
         <h5 class="text-muted"><small>Most Played Today</small></h5>
         <h4>{{ mostHeard?.name }}</h4>
-        <a href="#" class="card-link" *ngFor="let artist of mostHeard?.artists">{{ artist }}</a>
+        <a [routerLink]="['/artist', artist]" class="card-link" *ngFor="let artist of mostHeard?.artists">{{ artist }}</a>
       </div>
     </div>
   </div>
@@ -36,24 +36,24 @@
 <br>
 <br>
 
-<div class="row" infinite-scroll
-  [infiniteScrollDistance]="1"
-  (scrolled)="onScroll()">
-  <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let stream of recent" style="margin-bottom:30px">
-    <div class="card h-100">
-      <coverart [songId]="stream.songId"></coverart>
-      <div class="card-block">
-        <p class="card-text">
-          <small class="text-muted">
-            <time-since [date]="stream.startTime"></time-since>
-          </small>
-        </p>
-        <h5 class="card-title">{{ stream.name }}</h5>
-        <a href="#" class="card-link" *ngFor="let artist of stream.artists">{{ artist }}</a>
-      </div>
-      <div style="height:40px">
-        <app-links class="text-xs-center" [stream]="stream"></app-links>
+<div class="row" infinite-scroll (scrolled)="onScroll(song)">
+  <template ngFor let-stream [ngForOf]="streams">
+    <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let song of stream" style="margin-bottom:30px">
+      <div class="card h-100">
+        <coverart [songId]="song.songId"></coverart>
+        <div class="card-block">
+          <p class="card-text">
+            <small class="text-muted">
+              <time-since [date]="song.startTime"></time-since>
+            </small>
+          </p>
+          <h5 class="card-title">{{ song.name }}</h5>
+          <a [routerLink]="['/artist', artist]" class="card-link" *ngFor="let artist of song.artists">{{ artist }}</a>
+        </div>
+        <div style="height:40px">
+          <app-links class="text-xs-center" [stream]="song"></app-links>
+        </div>
       </div>
     </div>
-  </div>
+  </template>
 </div>

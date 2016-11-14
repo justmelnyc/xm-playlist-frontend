@@ -14,12 +14,14 @@ import { TimeSinceComponent } from './util/time-since.component';
 import { CoverartComponent } from './coverart/coverart.component';
 import { LinksComponent } from './links/links.component';
 import { TrackComponent } from './track/track.component';
+import { ArtistComponent } from './artist/artist.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'station/:channelName', component: StreamComponent },
   { path: 'track/:songId', component: TrackComponent },
+  { path: 'artist/:artist', component: ArtistComponent },
   {
     path: '**',
     redirectTo: '',
@@ -37,6 +39,7 @@ const routes: Routes = [
     CoverartComponent,
     LinksComponent,
     TrackComponent,
+    ArtistComponent,
   ],
   imports: [
     BrowserModule,
