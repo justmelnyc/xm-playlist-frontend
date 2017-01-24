@@ -30,9 +30,9 @@ export class TimeSinceComponent implements OnDestroy, OnChanges {
     this.timeout = setTimeout(() => this.format(), next);
   }
   format() {
-    let now = +new Date();
+    const now = +new Date();
     this.change = now - (+this.past);
-    let res = ms(this.change, {long: true});
+    const res = ms(this.change, {long: true});
     if (res.indexOf('ms') !== -1 || res.indexOf('second') !== -1) {
       this.timeSince = '1 minute';
     } else {

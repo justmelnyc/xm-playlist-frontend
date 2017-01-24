@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
 
 import { Api } from '../api';
 import { Channel, Stream } from '../app.interfaces';
@@ -13,7 +13,6 @@ import { Channel, Stream } from '../app.interfaces';
   templateUrl: './stream.component.html',
 })
 export class StreamComponent implements OnInit, OnDestroy {
-
   channels: Observable<Channel[]>;
   streams: Stream[][];
   mostHeard: Stream;

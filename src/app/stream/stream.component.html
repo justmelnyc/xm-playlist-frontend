@@ -4,7 +4,7 @@
       <div class="media-left" style="max-width:30%">
         <coverart [songId]="mostHeard?.songId"></coverart>
       </div>
-      <div class="media-body pb-3">
+      <div class="media-body pb-3 ml-3">
         <h5 class="text-muted"><small>Most Played Today</small></h5>
         <h4>{{ mostHeard?.name }}</h4>
         <a [routerLink]="['/artist', artist]" class="card-link" *ngFor="let artist of mostHeard?.artists">{{ artist }}</a>
@@ -13,16 +13,16 @@
   </div>
   <div class="col-md-6 col-sm-12">
     <div class="row">
-      <div class="col-xs-6">
-        <div class="text-xs-center card-block">
+      <div class="col">
+        <div class="text-center card-block">
           <h2>{{ total }}</h2>
           <p class="card-text">
             <small>songs last 24 hours</small>
           </p>
         </div>
       </div>
-      <div class="col-xs-6">
-        <div class="text-xs-center card-block">
+      <div class="col">
+        <div class="text-center card-block">
           <h2>{{ unique }}</h2>
           <p class="card-text">
             <small>unique songs last 24 hours</small>
@@ -51,7 +51,7 @@
           <a [routerLink]="['/artist', artist]" class="card-link" *ngFor="let artist of song.artists">{{ artist }}</a>
         </div>
         <div style="height:40px">
-          <app-links class="text-xs-center" [stream]="song"></app-links>
+          <app-links class="text-center" [stream]="song"></app-links>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { Api } from '../api';
 import { Channel } from '../app.interfaces';
@@ -8,7 +8,6 @@ import { Channel } from '../app.interfaces';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit, OnDestroy {
   channels: Observable<Channel[]>;
