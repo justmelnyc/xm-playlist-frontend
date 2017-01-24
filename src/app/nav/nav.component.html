@@ -1,20 +1,25 @@
-<nav class="navbar navbar-toggleable-xl navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']">xmplaylist</a>
-    <ul class="nav navbar-nav">
-      <li ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle">
-          {{ channelName || 'Stations' }}
-        </a>
-        <div class="dropdown-menu">
-          <a *ngFor="let channel of channels | async" class="dropdown-item" [routerLink]="['/station', channel.name]">
-            {{ channel.name }}
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle">
+            {{ channelName || 'Stations' }}
           </a>
-        </div>
-      </li>
-      <!-- <li class="nav-item" *ngIf="channelName">
-        <a class="nav-link" [routerLink]="['station', channelName]">recent</a>
-      </li> -->
-    </ul>
+          <div class="dropdown-menu">
+            <a *ngFor="let channel of channels | async" class="dropdown-item" [routerLink]="['/station', channel.name]">
+              {{ channel.name }}
+            </a>
+          </div>
+        </li>
+        <!-- <li class="nav-item" *ngIf="channelName">
+          <a class="nav-link" [routerLink]="['station', channelName]">recent</a>
+        </li> -->
+      </ul>
+    </div>
   </div>
 </nav>

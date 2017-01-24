@@ -10,6 +10,7 @@ import { Channel } from '../app.interfaces';
   templateUrl: './nav.component.html',
 })
 export class NavComponent implements OnInit, OnDestroy {
+  isCollapsed = true;
   channels: Observable<Channel[]>;
   channelName: string;
   private sub: Subscription;
