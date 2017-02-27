@@ -7,7 +7,7 @@ import { Api } from '../api';
 import { Track } from '../app.interfaces';
 
 @Component({
-  selector: 'app-track',
+  selector: 'xm-track',
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.css']
 })
