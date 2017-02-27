@@ -34,7 +34,7 @@
 </div>
 
 <div class="row" infinite-scroll (scrolled)="onScroll(song)">
-  <template ngFor let-stream [ngForOf]="streams">
+  <ng-template ngFor let-stream [ngForOf]="streams">
     <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let song of stream" style="margin-bottom:30px">
       <div class="card h-100">
         <xm-coverart [songId]="song.songId"></xm-coverart>
@@ -52,5 +52,5 @@
         </div>
       </div>
     </div>
-  </template>
+  </ng-template>
 </div>

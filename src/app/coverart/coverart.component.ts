@@ -1,4 +1,4 @@
-import { Component, Input, DoCheck } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Api } from '../api';
 import { Spotify } from '../app.interfaces';
@@ -6,29 +6,19 @@ import { Spotify } from '../app.interfaces';
 @Component({
   selector: 'xm-coverart',
   template: `
-  <a [routerLink]="['/track', songId]">
-    <img class="img-fluid" src="{{spotify?.cover || default}}">
-  </a>
+  <img class="img-fluid" [src]="image">
   `,
 })
-export class CoverartComponent implements DoCheck {
-  @Input() songId: string;
-  default = '/assets/img/album_placeholder.jpg';
-  spotify: Spotify;
+export class CoverartComponent implements OnInit {
+  @Input() songId;
+  image = '/assets/img/album_placeholder.jpg';
 
   private oldId: string;
 
   constructor(private api: Api) { }
-  ngDoCheck() {
-    if (!this.songId || this.oldId === this.songId) {
-      return;
-    }
-    this.oldId = this.songId;
+  ngOnInit() {
     this.api.getSpotify(this.songId).subscribe((spotify) => {
-      if (!spotify) {
-        return;
-      }
-      this.spotify = spotify;
+      this.image = spotify.cover;
     });
   }
 

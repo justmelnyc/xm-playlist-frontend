@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-4" *ngFor="let channel of channels | async">
     <div class="card" [routerLink]="['station', channel.name]">
-      <a [routerLink]="['station', channel.name]">
+      <a [routerLink]="['/station', channel.name]">
         <img class="card-img-top img-fluid" [alt]="channel.name" [src]="channel.img">
       </a>
       <div class="card-block">

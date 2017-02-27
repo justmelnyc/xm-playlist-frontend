@@ -46,7 +46,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     InfiniteScrollModule,
-    XmUtility
+    XmUtility,
   ],
   providers: [Api],
   bootstrap: [AppComponent]
