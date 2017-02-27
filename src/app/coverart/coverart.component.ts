@@ -6,7 +6,9 @@ import { Spotify } from '../app.interfaces';
 @Component({
   selector: 'xm-coverart',
   template: `
-  <img class="img-fluid" [src]="image">
+  <a [routerLink]="['/track', songId]">
+    <img class="img-fluid" [src]="image">
+  </a>
   `,
 })
 export class CoverartComponent implements OnInit {

@@ -7,16 +7,16 @@ import { Stream } from '../app.interfaces';
   selector: 'xm-links',
   template: `
   <div class="links m-2 text-center">
-    <a [routerLink]="['/track', stream.songId]" *ngIf="!hideTrack" ngbTooltip="Info" class="btn btn-secondary info" role="button">
+    <a [routerLink]="['/track', stream.songId]" *ngIf="!hideTrack" class="btn btn-secondary info" role="button">
       <i class="fa fa-info-circle"></i>
     </a>
-    <a [href]="hypem" target="_blank" ngbTooltip="hypem" class="btn btn-secondary hypem" role="button">
+    <a [href]="hypem" target="_blank" class="btn btn-secondary hypem" role="button">
       <i class="fa fa-heart"></i>
     </a>
-    <a [href]="youtube" target="_blank" ngbTooltip="youtube" class="btn btn-secondary youtube" role="button">
+    <a [href]="youtube" target="_blank" class="btn btn-secondary youtube" role="button">
       <i class="fa fa-youtube-play"></i>
     </a>
-    <a [href]="spotify" *ngIf="spotify" ngbTooltip="spotify" target="_blank" class="btn btn-secondary spotify" role="button">
+    <a [href]="spotify" *ngIf="spotify" target="_blank" class="btn btn-secondary spotify" role="button">
       <i class="fa fa-spotify"></i>
     </a>
   </div>
