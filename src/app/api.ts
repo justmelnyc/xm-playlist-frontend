@@ -21,48 +21,52 @@ export class Api {
       .map(res => res.json());
   }
 
-  getRecent(channelName: string, last?: Stream): Promise<Stream[]> {
+  getRecent(channelName: string, last?: Stream): Observable<Stream[]> {
     const search = new URLSearchParams();
     if (last) {
       search.set('last', String(new Date(last.startTime).getTime()));
     }
     return this.http
       .get(`${environment.api}/recent/${channelName}`, { search })
-      .toPromise()
-      .then(res => res.json())
+      .map(res => res.json())
       .catch(this.handleError);
   }
 
-  getTrack(songId: string): Promise<Track> {
+  getTrack(songId: string): Observable<Track> {
     return this.http
       .get(`${environment.api}/track/${songId}`)
-      .toPromise()
-      .then(res => res.json())
+      .map(res => res.json())
       .catch(this.handleError);
   }
 
-  mostHeard(channelName: string): Promise<any[]> {
+  mostHeard(channelName: string): Observable<any[]> {
     return this.http
       .get(`${environment.api}/mostHeard/${channelName}`)
-      .toPromise()
-      .then(res => res.json())
+      .map(res => res.json())
       .catch(this.handleError);
   }
 
-  getSpotify(songId: string): Promise<Spotify> {
+  getSpotify(songId: string): Observable<Spotify> {
     if (this.spotifyCache[songId]) {
       return this.spotifyCache[songId];
     }
     this.spotifyCache[songId] = this.http
       .get(`${environment.api}/spotify/${encodeURIComponent(songId)}`)
-      .toPromise()
-      .then(res => res.json())
+      .map(res => res.json())
       .catch(this.handleError);
     return this.spotifyCache[songId];
   }
 
-  private handleError(error: Response | any) {
-    console.error(error);
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const err = error.text() || '';
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
 }
