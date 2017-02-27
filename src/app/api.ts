@@ -11,14 +11,21 @@ import { Channel, Stream, Spotify, Track } from './app.interfaces';
 export class Api {
 
   currentChannel: BehaviorSubject<string> = new BehaviorSubject('');
+  private url: string = environment.api;
   private spotifyCache: any = {};
+  private channelCache: Observable<Channel[]>;
 
   constructor(private http: Http) { }
 
   getChannels(): Observable<Channel[]> {
-    return this.http
-      .get(`${environment.api}/channels`)
-      .map(res => res.json());
+    if (!this.channelCache)  {
+      this.channelCache = this.http
+        .get(`${this.url}/channels`)
+        .map(res => res.json())
+        .publishReplay()
+        .refCount();
+    }
+    return this.channelCache;
   }
 
   getRecent(channelName: string, last?: Stream): Observable<Stream[]> {
@@ -27,33 +34,39 @@ export class Api {
       search.set('last', String(new Date(last.startTime).getTime()));
     }
     return this.http
-      .get(`${environment.api}/recent/${channelName}`, { search })
+      .get(`${this.url}/recent/${channelName}`, { search })
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   getTrack(songId: string): Observable<Track> {
     return this.http
-      .get(`${environment.api}/track/${songId}`)
+      .get(`${this.url}/track/${songId}`)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   mostHeard(channelName: string): Observable<any[]> {
     return this.http
-      .get(`${environment.api}/mostHeard/${channelName}`)
+      .get(`${this.url}/mostHeard/${channelName}`)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   getSpotify(songId: string): Observable<Spotify> {
-    if (this.spotifyCache[songId]) {
-      return this.spotifyCache[songId];
+    if (!songId) {
+      return;
     }
-    this.spotifyCache[songId] = this.http
-      .get(`${environment.api}/spotify/${encodeURIComponent(songId)}`)
-      .map(res => res.json())
-      .catch(this.handleError);
+    if (!this.spotifyCache[songId]) {
+      this.spotifyCache[songId] = this.http
+        .get(`${this.url}/spotify/${encodeURIComponent(songId)}`)
+        .map(res => res.json())
+        .catch(() => {
+          return Observable.of(null);
+        })
+        .publishReplay()
+        .refCount();
+    }
     return this.spotifyCache[songId];
   }
 

@@ -7,7 +7,7 @@ import { Spotify } from '../app.interfaces';
   selector: 'xm-coverart',
   template: `
   <a [routerLink]="['/track', songId]">
-    <img class="img-fluid" [src]="image">
+    <img class="img-fluid" width="100%" [src]="image">
   </a>
   `,
 })
@@ -20,6 +20,9 @@ export class CoverartComponent implements OnInit {
   constructor(private api: Api) { }
   ngOnInit() {
     this.api.getSpotify(this.songId).subscribe((spotify) => {
+      if (!spotify) {
+        return;
+      }
       this.image = spotify.cover;
     });
   }
