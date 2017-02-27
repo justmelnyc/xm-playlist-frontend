@@ -43,7 +43,7 @@ export class StreamComponent implements OnInit, OnDestroy {
       }
       this.api.currentChannel.next(channelName);
       this.getRecentPage();
-      this.api.mostHeard(channelName).then((res) => {
+      this.api.mostHeard(channelName).subscribe((res) => {
         this.unique = res.length;
         this.total = _.sumBy(res, 'count');
         this.mostHeard = res[0];
@@ -59,7 +59,7 @@ export class StreamComponent implements OnInit, OnDestroy {
     }
     this.loading = true;
     const channel = this.api.currentChannel.getValue();
-    this.api.getRecent(channel, this.lastLoaded).then((recent) => {
+    this.api.getRecent(channel, this.lastLoaded).subscribe((recent) => {
       this.streams.push(recent);
       this.lastLoaded = _.last(recent);
       this.loading = false;

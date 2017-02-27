@@ -1,15 +1,14 @@
 import { Component, OnDestroy, Input, OnChanges } from '@angular/core';
-const ms = require('ms');
+import * as distanceInWordsStrict from 'date-fns/distance_in_words_strict';
 
 @Component({
-  selector: 'time-since',
+  selector: 'xm-time-since',
   template: `{{ timeSince }} ago`,
 })
 export class TimeSinceComponent implements OnDestroy, OnChanges {
   @Input() date: string;
   timeSince: string;
-  private past: Date;
-  private change: number;
+  private past: any;
   private timeout: any;
 
   ngOnChanges() {
@@ -30,9 +29,7 @@ export class TimeSinceComponent implements OnDestroy, OnChanges {
     this.timeout = setTimeout(() => this.format(), next);
   }
   format() {
-    const now = +new Date();
-    this.change = now - (+this.past);
-    const res = ms(this.change, {long: true});
+    const res = distanceInWordsStrict(new Date(), this.past);
     if (res.indexOf('ms') !== -1 || res.indexOf('second') !== -1) {
       this.timeSince = '1 minute';
     } else {

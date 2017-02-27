@@ -6,6 +6,6 @@ export class XmPlaylistFrontendPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('xm-root h1')).getText();
   }
 }

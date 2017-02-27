@@ -6,7 +6,7 @@ import { Api } from '../api';
 import { Channel } from '../app.interfaces';
 
 @Component({
-  selector: 'app-nav',
+  selector: 'xm-nav',
   templateUrl: './nav.component.html',
 })
 export class NavComponent implements OnInit, OnDestroy {

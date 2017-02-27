@@ -25,7 +25,7 @@ export class TrackComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe((params: Params) => {
       // get segment id from route
       const songId = params['songId'];
-      this.api.getTrack(songId).then((track) => {
+      this.api.getTrack(songId).subscribe((track) => {
         this.track = track;
       });
     });

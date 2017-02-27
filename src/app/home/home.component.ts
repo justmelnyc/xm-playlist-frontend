@@ -5,7 +5,7 @@ import { Api } from '../api';
 import { Channel } from '../app.interfaces';
 
 @Component({
-  selector: 'app-home',
+  selector: 'xm-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

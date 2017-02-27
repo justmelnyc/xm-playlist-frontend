@@ -4,9 +4,11 @@ import { Api } from '../api';
 import { Spotify } from '../app.interfaces';
 
 @Component({
-  selector: 'coverart',
+  selector: 'xm-coverart',
   template: `
-  <img class="img-fluid" src="{{spotify?.cover || default}}">
+  <a [routerLink]="['/track', songId]">
+    <img class="img-fluid" src="{{spotify?.cover || default}}">
+  </a>
   `,
 })
 export class CoverartComponent implements DoCheck {
@@ -22,7 +24,7 @@ export class CoverartComponent implements DoCheck {
       return;
     }
     this.oldId = this.songId;
-    this.api.getSpotify(this.songId).then((spotify) => {
+    this.api.getSpotify(this.songId).subscribe((spotify) => {
       if (!spotify) {
         return;
       }

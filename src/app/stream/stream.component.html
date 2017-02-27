@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-6 col-sm-12">
+  <div class="col-md-6 col-sm-12 pb-5">
     <div class="media">
       <div class="media-left" style="max-width:30%">
-        <coverart [songId]="mostHeard?.songId"></coverart>
+        <xm-coverart [songId]="mostHeard?.songId"></xm-coverart>
       </div>
       <div class="media-body pb-3 ml-3">
         <h5 class="text-muted"><small>Most Played Today</small></h5>
@@ -33,25 +33,22 @@
   </div>
 </div>
 
-<br>
-<br>
-
 <div class="row" infinite-scroll (scrolled)="onScroll(song)">
   <template ngFor let-stream [ngForOf]="streams">
     <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let song of stream" style="margin-bottom:30px">
       <div class="card h-100">
-        <coverart [songId]="song.songId"></coverart>
+        <xm-coverart [songId]="song.songId"></xm-coverart>
         <div class="card-block">
           <p class="card-text">
             <small class="text-muted">
-              <time-since [date]="song.startTime"></time-since>
+              <xm-time-since [date]="song.startTime"></xm-time-since>
             </small>
           </p>
           <h5 class="card-title">{{ song.name }}</h5>
           <a [routerLink]="['/artist', artist]" class="card-link" *ngFor="let artist of song.artists">{{ artist }}</a>
         </div>
-        <div style="height:40px">
-          <app-links class="text-center" [stream]="song"></app-links>
+        <div>
+          <xm-links [stream]="song"></xm-links>
         </div>
       </div>
     </div>

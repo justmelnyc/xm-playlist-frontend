@@ -7,7 +7,7 @@ import { CoverartComponent } from './coverart.component';
 
 describe('CoverartComponent', () => {
   let component: CoverartComponent;
-  let fixture: ComponentFixture<CoverartComponent>;
+  let fixture: ComponentFixture<xm-coverartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

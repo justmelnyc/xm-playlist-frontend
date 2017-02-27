@@ -10,7 +10,7 @@ import { StreamComponent } from './stream/stream.component';
 import { HomeComponent } from './home/home.component';
 import { Api } from './api';
 import { NavComponent } from './nav/nav.component';
-import { TimeSinceComponent } from './util/time-since.component';
+import { XmUtility } from './util';
 import { CoverartComponent } from './coverart/coverart.component';
 import { LinksComponent } from './links/links.component';
 import { TrackComponent } from './track/track.component';
@@ -35,7 +35,6 @@ const routes: Routes = [
     StreamComponent,
     HomeComponent,
     NavComponent,
-    TimeSinceComponent,
     CoverartComponent,
     LinksComponent,
     TrackComponent,
@@ -47,10 +46,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     InfiniteScrollModule,
+    XmUtility
   ],
-  providers: [
-    Api,
-  ],
+  providers: [Api],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

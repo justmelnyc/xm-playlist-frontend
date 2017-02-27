@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="col-sm-3" *ngFor="let channel of channels">
+  <div class="col-sm-4" *ngFor="let channel of channels | async">
     <div class="card" [routerLink]="['station', channel.name]">
-      <img class="card-img-top img-fluid" [alt]="channel.name" src="{{ '//www.siriusxm.com/albumart/Live/Default/DefaultMDS_m_' + channel.number + '.jpg' }}">
+      <a [routerLink]="['station', channel.name]">
+        <img class="card-img-top img-fluid" [alt]="channel.name" [src]="channel.img">
+      </a>
       <div class="card-block">
         <h5 class="card-title">{{channel.name}}</h5>
       </div>
